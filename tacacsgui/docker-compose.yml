@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+
+  tacacsgui:
+    image: myimage:1.0
+    container_name: tacacsgui
+    privileged: true
+    restart: on-failure
+    command: sh /opt/startup.sh
+    hostname: tacacs01.it-on-demand.dk
+    volumes:
+      - opt:/opt/
+      - mysql:/var/lib/mysql
+    ports:
+      - 4443:4443/tcp
+      - 4443:4443/udp
+      - 49:49/tcp
+      - 49:49/udp
+
+volumes:
+  mysql:
+    external: true
+  opt:
+    external: true
+
